@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axion FC | Precision Elite</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        axion: {
+                            dark: '#020617',
+                            gold: '#fbbf24',
+                            cyan: '#06b6d4',
+                            blue: '#2563eb',
+                            surface: '#0f172a',
+                            danger: '#ef4444'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Oswald', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        display: ['Bebas Neue', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;600;700&family=Bebas+Neue&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #020617; 
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+        
+        .font-heading { font-family: 'Oswald', sans-serif; }
+        .font-display { font-family: 'Bebas Neue', sans-serif; }
+
+        .mesh-bg {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(37, 99, 235, 0.1) 0, transparent 50%);
+        }
+
+        .glass-card { 
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.4) 100%);
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(2, 6, 23, 0.6), rgba(2, 6, 23, 0.95)), url('https://i.ibb.co/kshPZ5vJ/image.jpg');
+            background-size: cover; 
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .nav-btn {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-active { color: #06b6d4; }
+        .nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #06b6d4;
+            box-shadow: 0 0 8px #06b6d4;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+            display: flex;
+            width: 400%;
+            animation: scroll 30s linear infinite;
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .img-decorated {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .img-decorated::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(2, 6, 23, 0.8), transparent);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden antialiased mesh-bg">
+
+    <header class="fixed top-0 w-full z-50">
+        <div class="bg-red-600/90 backdrop-blur-sm text-white text-[10px] font-black uppercase tracking-[0.4em] py-2 overflow-hidden border-b border-red-500/20">
+            <div class="animate-scroll">
+                <span class="px-12 flex items-center gap-2"><i data-lucide="shield-alert" class="w-3 h-3"></i> SAY NO TO DRUGS • SAVE THE YOUTH • AXION FC NOWGAM</span>
+                <span class="px-12 flex items-center gap-2"><i data-lucide="shield-alert" class="w-3 h-3"></i> SAY NO TO DRUGS • SAVE THE YOUTH • AXION FC NOWGAM</span>
+            </div>
+        </div>
+        
+        <nav class="bg-slate-950/40 backdrop-blur-xl border-b border-white/5">
+            <div class="content-container h-24 flex items-center justify-between">
+                <div class="flex items-center gap-4 cursor-pointer group" onclick="showPage('home')">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-cyan-500 blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <img src="https://i.ibb.co/CKNVtWGv/logo.jpg" alt="Logo" class="relative h-14 w-14 rounded-full border-2 border-cyan-500/30 p-0.5">
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-display tracking-widest text-white">AXION <span class="text-cyan-400">FC</span></span>
+                        <span class="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold">Elite Development</span>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.2em]">
+                    <button onclick="showPage('home')" id="btn-home" class="nav-btn nav-active hover:text-cyan-400">Home</button>
+                    <button onclick="showPage('about')" id="btn-about" class="nav-btn hover:text-cyan-400">Mission</button>
+                    <button onclick="showPage('squad')" id="btn-squad" class="nav-btn hover:text-cyan-400">Squad</button>
+                    <button onclick="showPage('gallery')" id="btn-gallery" class="nav-btn hover:text-cyan-400">Vault</button>
+                    <button onclick="showPage('join')" class="ml-4 px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-700 rounded-lg text-white shadow-lg shadow-cyan-900/20 hover:scale-105 transition-transform">Join the Clan</button>
+                </div>
+
+                <button class="lg:hidden text-white bg-white/5 p-3 rounded-xl border border-white/10" onclick="toggleMenu()">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 hidden">
+        <button onclick="showPage('home'); toggleMenu()" class="text-4xl font-display tracking-widest text-white">HOME</button>
+        <button onclick="showPage('about'); toggleMenu()" class="text-4xl font-display tracking-widest text-white">MISSION</button>
+        <button onclick="showPage('squad'); toggleMenu()" class="text-4xl font-display tracking-widest text-white">SQUAD</button>
+        <button onclick="showPage('gallery'); toggleMenu()" class="text-4xl font-display tracking-widest text-white">VAULT</button>
+        <button onclick="toggleMenu()" class="mt-12 text-slate-500 border border-slate-800 p-4 rounded-full"><i data-lucide="x" class="w-8 h-8"></i></button>
+    </div>
+
+    <main class="pt-32">
+
+        <!-- HOME -->
+        <div id="page-home" class="page-content">
+            <section class="hero-bg min-h-[90vh] flex items-center relative overflow-hidden">
+                <div class="content-container relative z-10 py-20">
+                    <div class="max-w-4xl">
+                        <div class="inline-flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-8">
+                            <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
+                            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300">Official Registration in Progress</span>
+                        </div>
+                        
+                        <h1 class="font-display font-black uppercase tracking-tight mb-8">
+                            <span class="block text-7xl md:text-[110px] leading-[0.85] text-white">AXION</span>
+                            <span class="block text-7xl md:text-[110px] leading-[0.85] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">FOOTBALL</span>
+                            <div class="flex items-center gap-4 mt-2">
+                                <span class="text-5xl md:text-[80px] leading-[0.85] text-white">CLUB</span>
+                                <span class="text-4xl md:text-[60px] leading-[0.85] font-light italic text-slate-500 tracking-widest">SRINAGAR</span>
+                            </div>
+                        </h1>
+                        
+                        <p class="text-xl md:text-2xl text-slate-300 mb-12 max-w-2xl font-light leading-relaxed">
+                            Based in Nowgam, Srinagar. We are more than a club—we are a defensive line against drug addiction, building the next generation of Kashmiri stars.
+                        </p>
+                        <div class="flex flex-wrap gap-6">
+                            <button onclick="showPage('join')" class="px-10 py-5 bg-cyan-600 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-cyan-500 transition-all shadow-xl shadow-cyan-900/40">Launch WhatsApp Trial</button>
+                            <button onclick="showPage('about')" class="px-10 py-5 bg-white/5 border border-white/10 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all">Mission Manifesto</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-24 bg-slate-950/50">
+                <div class="content-container">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="glass-card">
+                            <div class="w-14 h-14 bg-red-600/10 border border-red-500/20 rounded-2xl flex items-center justify-center mb-6">
+                                <i data-lucide="shield-x" class="text-red-500 w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-2xl font-display tracking-widest mb-4">DRUG FREE</h3>
+                            <p class="text-slate-400 text-sm">A strict non-negotiable policy. We build health, not just skill. Every player is an ambassador for a cleaner Kashmir.</p>
+                        </div>
+                        <div class="glass-card">
+                            <div class="w-14 h-14 bg-cyan-600/10 border border-cyan-500/20 rounded-2xl flex items-center justify-center mb-6">
+                                <i data-lucide="trophy" class="text-cyan-500 w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-2xl font-display tracking-widest mb-4">ELITE PATHWAY</h3>
+                            <p class="text-slate-400 text-sm">Professional coaching standards designed to take local talent from the streets of Nowgam to professional leagues.</p>
+                        </div>
+                        <div class="glass-card">
+                            <div class="w-14 h-14 bg-blue-600/10 border border-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
+                                <i data-lucide="map-pinned" class="text-blue-500 w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-2xl font-display tracking-widest mb-4">NOWGAM PRIDE</h3>
+                            <p class="text-slate-400 text-sm">Deeply rooted in our local community. We provide a structured platform for the youth to excel and stay safe.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SQUAD -->
+        <div id="page-squad" class="page-content hidden py-24">
+            <div class="content-container">
+                <div class="section-header">
+                    <h2 class="text-7xl font-display tracking-tighter uppercase mb-4 text-white">The <span class="text-cyan-500 italic">Roster</span></h2>
+                    <p class="text-slate-500 uppercase tracking-[0.4em] text-[11px] font-black">Elite Talent Development</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="group cursor-pointer">
+                        <div class="img-decorated h-[500px]">
+                            <img src="https://i.ibb.co/TMQt2hZ7/image.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Senior Team">
+                        </div>
+                        <div class="mt-6">
+                            <h4 class="text-3xl font-display tracking-widest text-white group-hover:text-cyan-400 transition-colors">SENIOR FIRST XI</h4>
+                            <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Competitive Division</p>
+                        </div>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="img-decorated h-[500px]">
+                            <img src="https://i.ibb.co/Tqcg5mDV/image.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="U16 Team">
+                        </div>
+                        <div class="mt-6">
+                            <h4 class="text-3xl font-display tracking-widest text-white group-hover:text-cyan-400 transition-colors">YOUTH ACADEMY (U16)</h4>
+                            <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Future Stars</p>
+                        </div>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="img-decorated h-[500px]">
+                            <img src="https://i.ibb.co/zHWkvS2f/image.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Grassroots">
+                        </div>
+                        <div class="mt-6">
+                            <h4 class="text-3xl font-display tracking-widest text-white group-hover:text-cyan-400 transition-colors">GRASSROOTS ELITE</h4>
+                            <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Technical Foundation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MISSION -->
+        <div id="page-about" class="page-content hidden py-24">
+            <div class="content-container max-w-5xl">
+                <div class="glass-card">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h2 class="text-5xl font-display mb-8 tracking-widest text-white leading-tight">WE STAND FOR <br><span class="text-cyan-400">MORE THAN WINS</span></h2>
+                            <div class="space-y-10">
+                                <div class="relative pl-8 border-l border-cyan-500/30">
+                                    <div class="absolute -left-1 top-0 w-2 h-2 bg-cyan-500 rounded-full"></div>
+                                    <h4 class="text-white font-bold uppercase text-xs tracking-widest mb-3">The Drug War</h4>
+                                    <p class="text-slate-400 text-sm">Kashmir's youth are facing an epidemic. Axion FC is a strategic response, using the discipline of football to steer boys away from dark paths.</p>
+                                </div>
+                                <div class="relative pl-8 border-l border-white/10">
+                                    <h4 class="text-white font-bold uppercase text-xs tracking-widest mb-3">Professional Aim</h4>
+                                    <p class="text-slate-400 text-sm">We are aggressively pursuing official registration. Our goal is to participate in top-tier league football while maintaining our grassroots integrity.</p>
+                                </div>
+                                <div class="relative pl-8 border-l border-white/10">
+                                    <h4 class="text-white font-bold uppercase text-xs tracking-widest mb-3">Technical Excellence</h4>
+                                    <p class="text-slate-400 text-sm">We don't just play; we train with precision. Tactical awareness and physical conditioning are the cornerstones of the Axion philosophy.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="img-decorated aspect-square rotate-3 hover:rotate-0 transition-transform duration-500">
+                                <img src="https://i.ibb.co/CKNVtWGv/logo.jpg" class="w-full h-full object-cover" alt="Mission Logo">
+                            </div>
+                            <div class="absolute -bottom-6 -right-6 glass-card p-6 rounded-2xl border-cyan-500/40">
+                                <span class="text-4xl font-display text-white">100%</span>
+                                <span class="block text-[9px] uppercase tracking-widest font-black text-cyan-400">Sobriety</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VAULT -->
+        <div id="page-gallery" class="page-content hidden py-24">
+            <div class="content-container">
+                <div class="section-header">
+                    <h2 class="text-7xl font-display tracking-widest uppercase text-white">The <span class="text-cyan-500">Vault</span></h2>
+                </div>
+                <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                    <div class="img-decorated group">
+                        <img src="https://i.ibb.co/8n04d22n/image.jpg" class="w-full hover:scale-110 transition-transform duration-700" alt="Action">
+                    </div>
+                    <div class="img-decorated group">
+                        <img src="https://i.ibb.co/S4pb9CZG/image.jpg" class="w-full hover:scale-110 transition-transform duration-700" alt="Action">
+                    </div>
+                    <div class="img-decorated group">
+                        <img src="https://i.ibb.co/TMQt2hZ7/image.jpg" class="w-full hover:scale-110 transition-transform duration-700" alt="Action">
+                    </div>
+                    <div class="img-decorated group">
+                        <img src="https://i.ibb.co/Tqcg5mDV/image.jpg" class="w-full hover:scale-110 transition-transform duration-700" alt="Action">
+                    </div>
+                    <div class="img-decorated group">
+                        <img src="https://i.ibb.co/zHWkvS2f/image.jpg" class="w-full hover:scale-110 transition-transform duration-700" alt="Action">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JOIN -->
+        <div id="page-join" class="page-content hidden py-24">
+            <div class="content-container text-center max-w-3xl">
+                <div class="glass-card py-20">
+                    <div class="w-24 h-24 bg-green-600/20 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto mb-10 animate-pulse">
+                        <i data-lucide="message-square" class="w-10 h-10 text-green-500"></i>
+                    </div>
+                    <h2 class="text-6xl font-display mb-6 tracking-widest text-white uppercase">Clan Application</h2>
+                    <p class="text-slate-400 text-lg mb-12 leading-relaxed">
+                        Ready to prove yourself? Click the button below to start your application via WhatsApp. A pre-filled form will be waiting for you.
+                    </p>
+                    
+                    <button onclick="sendWhatsAppMessage()" class="inline-block px-12 py-6 bg-green-600 hover:bg-green-500 text-white font-bold uppercase tracking-[0.3em] rounded-2xl transition-all shadow-2xl shadow-green-900/40 hover:-translate-y-2">
+                        Message Recruitment
+                    </button>
+                    
+                    <div class="mt-12 p-6 bg-white/5 border border-white/10 rounded-xl text-left">
+                        <h4 class="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-4">The Template You'll Receive:</h4>
+                        <pre class="text-xs text-slate-500 font-mono whitespace-pre-wrap">
+*AXION FC REGISTRATION*
+Name: [Your Name]
+Age: [Your Age]
+Position: [e.g. Forward]
+Address: [Your Area]
+Contact: [Your Phone]
+Experience: [Previous Club/School]</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-950/80 border-t border-white/5 py-24 mt-32 relative overflow-hidden">
+        <div class="content-container">
+            <div class="grid lg:grid-cols-2 gap-24 mb-24">
+                <div>
+                    <h2 class="text-4xl font-display tracking-[0.4em] mb-8 text-white">AXION <span class="text-cyan-400">FC</span></h2>
+                    <p class="text-slate-500 max-w-md leading-relaxed text-sm font-light">
+                        Founded in Nowgam, Srinagar. We are committed to fostering elite athletic talent while ensuring a drug-free, disciplined future for the youth of our community.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="space-y-6">
+                        <h4 class="text-white font-black text-[10px] uppercase tracking-[0.5em]">Command HQ</h4>
+                        <div class="flex items-start gap-4 text-sm text-slate-400">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-cyan-500 shrink-0"></i>
+                            <span class="font-light">Naseema Abad Colony, Nowgam, Srinagar, J&K</span>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <h4 class="text-white font-black text-[10px] uppercase tracking-[0.5em]">Direct Link</h4>
+                        <div class="space-y-3 text-sm text-slate-400">
+                            <a href="tel:+919622444751" class="flex items-center gap-4 hover:text-cyan-400 transition font-light"><i data-lucide="phone" class="w-4 h-4 text-cyan-500"></i> +91 9622444751</a>
+                            <a href="mailto:astarwork07@gmail.com" class="flex items-center gap-4 hover:text-cyan-400 transition font-light"><i data-lucide="mail" class="w-4 h-4 text-cyan-500"></i> astarwork07@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-[9px] text-slate-700 font-black uppercase tracking-[0.8em]">
+                    AXION FOOTBALL CLUB &copy; 2026 • NOWGAM PRIDE
+                </div>
+                <div class="flex gap-10 text-red-600/40 text-[9px] font-black tracking-widest uppercase">
+                    <span>Clean Blood</span>
+                    <span>Clean Mind</span>
+                    <span>True Game</span>
+                </div>
+            </div>
+            
+            <!-- Stealthy Credit Section -->
+            <div class="mt-20 flex flex-col items-center justify-center space-y-2">
+                <p class="text-[7px] font-bold tracking-[0.6em] text-slate-900/40 uppercase pointer-events-none select-none">
+                    WEBSITE ENGINEERED BY @NEW WEB DEVS
+                </p>
+                <div class="w-8 h-[1px] bg-slate-900/20"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('nav-active'));
+            const activeBtn = document.getElementById('btn-' + pageId);
+            if(activeBtn) activeBtn.classList.add('nav-active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function sendWhatsAppMessage() {
+            const phoneNumber = "919622444751";
+            const message = 
+                "*AXION FC PLAYER REGISTRATION*\n" +
+                "--------------------------------\n" +
+                "Hello Axion FC Recruitment Team,\n" +
+                "I am interested in joining the club.\n\n" +
+                "*MY DETAILS:*\n" +
+                "• Full Name: \n" +
+                "• Date of Birth: \n" +
+                "• Playing Position: \n" +
+                "• Area/Address: \n" +
+                "• Contact Number: \n" +
+                "• Previous Experience: \n\n" +
+                "I confirm that I am committed to a drug-free lifestyle and the Axion code of conduct.";
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
